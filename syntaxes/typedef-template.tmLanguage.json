@@ -97,7 +97,7 @@
       "name": "keyword.control.else.typedef-template"
     },
     "control-endif": {
-      "match": "\/if",
+      "match": "/if",
       "name": "keyword.control.endif.typedef-template"
     },
     "control-switch": {
@@ -129,7 +129,7 @@
       ]
     },
     "control-endcase": {
-      "match": "\/case",
+      "match": "/case",
       "name": "keyword.control.endcase.typedef-template"
     },
     "control-default": {
@@ -137,11 +137,11 @@
       "name": "keyword.control.default.typedef-template"
     },
     "control-enddefault": {
-      "match": "\/default",
+      "match": "/default",
       "name": "keyword.control.enddefault.typedef-template"
     },
     "control-endswitch": {
-      "match": "\/switch",
+      "match": "/switch",
       "name": "keyword.control.endswitch.typedef-template"
     },
     "control-for": {
@@ -175,7 +175,7 @@
       ]
     },
     "control-endfor": {
-      "match": "\/for",
+      "match": "/for",
       "name": "keyword.control.endfor.typedef-template"
     },
     "expression-function": {
