@@ -2,4 +2,6 @@
 
 This extneion provides basic syntax highlighting for Typedef.
 
-**Enjoy!**
+Example:
+
+![syntax highlighting example](./syntax-highlighting-example.png)
