@@ -1,0 +1,234 @@
+{
+  "name": "typedef-template",
+  "scopeName": "source.typedef-template",
+  "injectionSelector": "meta.embedded.typedef-template",
+  "patterns": [
+    {
+      "name": "entity.name.tag.tmpl-control",
+      "begin": "(?<!\\\\)<",
+      "end": "(?<!\\\\)>",
+      "patterns": [
+        {
+          "include": "#control-if"
+        },
+        {
+          "include": "#control-elif"
+        },
+        {
+          "include": "#control-else"
+        },
+        {
+          "include": "#control-endif"
+        },
+        {
+          "include": "#control-switch"
+        },
+        {
+          "include": "#control-case"
+        },
+        {
+          "include": "#control-endcase"
+        },
+        {
+          "include": "#control-default"
+        },
+        {
+          "include": "#control-enddefault"
+        },
+        {
+          "include": "#control-endswitch"
+        },
+        {
+          "include": "#control-for"
+        },
+        {
+          "include": "#control-endfor"
+        },
+        {
+          "include": "#expression-function"
+        },
+        {
+          "include": "#identifier-chain"
+        }
+      ]
+    },
+    {
+      "name": "string.tmpl-text",
+      "match": ".+?"
+    }
+  ],
+  "repository": {
+    "control-if": {
+      "begin": "(if)\\s+",
+      "end": "(?=>)",
+      "captures": {
+        "1": {
+          "name": "keyword.control.if.typedef-template"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#expression-function"
+        },
+        {
+          "include": "#identifier-chain"
+        }
+      ]
+    },
+    "control-elif": {
+      "begin": "(elif)\\s+",
+      "end": "(?![\\.\\w])",
+      "captures": {
+        "1": {
+          "name": "keyword.control.elseif.typedef-template"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#expression-function"
+        },
+        {
+          "include": "#identifier-chain"
+        }
+      ]
+    },
+    "control-else": {
+      "match": "else",
+      "name": "keyword.control.else.typedef-template"
+    },
+    "control-endif": {
+      "match": "\/if",
+      "name": "keyword.control.endif.typedef-template"
+    },
+    "control-switch": {
+      "begin": "(switch)\\s+",
+      "end": "(?=>)",
+      "captures": {
+        "1": {
+          "name": "keyword.control.switch.typedef-template"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#identifier-chain"
+        }
+      ]
+    },
+    "control-case": {
+      "begin": "(case)\\s+",
+      "end": "(?=>)",
+      "captures": {
+        "1": {
+          "name": "keyword.control.case.typedef-template"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#identifier-chain"
+        }
+      ]
+    },
+    "control-endcase": {
+      "match": "\/case",
+      "name": "keyword.control.endcase.typedef-template"
+    },
+    "control-default": {
+      "match": "default",
+      "name": "keyword.control.default.typedef-template"
+    },
+    "control-enddefault": {
+      "match": "\/default",
+      "name": "keyword.control.enddefault.typedef-template"
+    },
+    "control-endswitch": {
+      "match": "\/switch",
+      "name": "keyword.control.endswitch.typedef-template"
+    },
+    "control-for": {
+      "begin": "(for)\\s+",
+      "end": "(?=>)",
+      "captures": {
+        "1": {
+          "name": "keyword.control.for.typedef-template"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#identifier-chain"
+        },
+        {
+          "match": "\\s*(,)\\s*",
+          "captures": {
+            "1": {
+              "name": "punctuation.separator.comma.typedef-template"
+            }
+          }
+        },
+        {
+          "match": "\\s+(in)\\s+",
+          "captures": {
+            "1": {
+              "name": "keyword.control.in.typedef-template"
+            }
+          }
+        }
+      ]
+    },
+    "control-endfor": {
+      "match": "\/for",
+      "name": "keyword.control.endfor.typedef-template"
+    },
+    "expression-function": {
+      "begin": "(\\w+)\\s*\\(",
+      "end": "\\)",
+      "captures": {
+        "0": {
+          "name": "expression-function.typedef-template"
+        },
+        "1": {
+          "name": "entity.name.function.typedef-template"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#function-args"
+        },
+        {
+          "match": "\\s*,\\s*",
+          "name": "punctuation.separator.comma.typedef-template"
+        }
+      ]
+    },
+    "function-args": {
+      "begin": "\\w+",
+      "end": "(?![\\.\\w])",
+      "name": "variable.typedef-template",
+      "patterns": [
+        {
+          "include": "#identifier-chain"
+        },
+        {
+          "match": "\\s*,\\s*",
+          "name": "punctuation.separator.comma.typedef-template"
+        },
+        {
+          "include": "#identifier-chain-list"
+        }
+      ]
+    },
+    "identifier-chain": {
+      "begin": "\\w+",
+      "end": "(?![\\.\\w])",
+      "name": "variable.typedef-template",
+      "patterns": [
+        {
+          "match": "\\.",
+          "name": "punctuation.separator.dot.typedef-template"
+        },
+        {
+          "include": "#identifier-chain"
+        }
+      ]
+    }
+  }
+}

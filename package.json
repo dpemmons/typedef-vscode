@@ -1,0 +1,52 @@
+{
+  "name": "typedef-language",
+  "displayName": "Typedef Language",
+  "description": "Syntax highlighting for the Typedef language.",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.83.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [
+      {
+        "id": "typedef",
+        "aliases": [
+          "Typedef",
+          "typedef",
+          "td"
+        ],
+        "extensions": [
+          ".td"
+        ],
+        "configuration": "./language-configuration.json",
+        "embeddedLanguages": {
+          "meta.embedded.typedef-template": "typedef-template"
+        }
+      },
+      {
+        "id": "typedef-template",
+        "aliases": [
+          "Typedef-Template",
+          "typedef-template"
+        ]
+      }
+    ],
+    "grammars": [
+      {
+        "language": "typedef",
+        "scopeName": "source.typedef",
+        "path": "./syntaxes/typedef.tmLanguage.json"
+      },
+      {
+        "scopeName": "source.typedef-template",
+        "path": "./syntaxes/typedef-template.tmLanguage.json",
+        "injectTo": [
+          "source.typedef"
+        ]
+      }
+    ]
+  }
+}

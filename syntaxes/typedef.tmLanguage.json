@@ -1,0 +1,285 @@
+{
+  "name": "typedef",
+  "fileTypes": [
+    "td"
+  ],
+  "scopeName": "source.typedef",
+  "patterns": [
+    {
+      "include": "#line-comment"
+    },
+    {
+      "include": "#block-comment"
+    },
+    {
+      "name": "typedef-version.typedef",
+      "match": "(typedef)(=)(\\w+)(;)",
+      "captures": {
+        "1": {
+          "name": "keyword.typedef-template"
+        },
+        "3": {
+          "name": "keyword.typedef-template"
+        }
+      }
+    },
+    {
+      "name": "module-declaration.typedef",
+      "match": "(module)\\s+(\\w+)(\\:\\:(\\w+))*(;)",
+      "captures": {
+        "1": {
+          "name": "keyword.typedef-template"
+        },
+        "2": {
+          "name": "entity.name.namespace.typedef-template"
+        },
+        "4": {
+          "name": "entity.name.namespace.typedef-template"
+        }
+      }
+    },
+    {
+      "include": "#struct"
+    },
+    {
+      "name": "raw-template.typedef-template",
+      "begin": "(template)\\s+(\\w+)\\(\\)\\s+(r\\#\")",
+      "end": "(\"\\#)",
+      "beginCaptures": {
+        "1": {
+          "name": "keyword.template-definition"
+        },
+        "2": {
+          "name": "entity.name.function.template"
+        },
+        "3": {
+          "name": "punctuation.definition.template-expression.begin.typedef"
+        }
+      },
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.definition.template-expression.end.typedef"
+        }
+      },
+      "patterns": [
+        {
+          "match": ".*",
+          "name": "string.raw-template.typedef-template"
+        }
+      ]
+    },
+    {
+      "name": "meta.embedded.typedef-template",
+      "begin": "(template)\\s+(\\w+)\\s*(\\()(.*?)(\\))\\s+(t\")",
+      "end": "(?<!\\\\(?:\\\\\\\\)*)(\")",
+      "beginCaptures": {
+        "1": {
+          "name": "keyword.typedef"
+        },
+        "2": {
+          "name": "entity.name.function.typedef"
+        },
+        "3": {
+          "name": "punctuation.section.parameters.begin.bracket.round.typedef"
+        },
+        "5": {
+          "name": "punctuation.section.parameters.end.bracket.round.typedef"
+        },
+        "6": {
+          "name": "punctuation.definition.template-expression.begin.typedef"
+        }
+      },
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.definition.template-expression.end.typedef"
+        }
+      },
+      "patterns": [
+        {
+          "include": "source.typedef-template"
+        }
+      ]
+    }
+  ],
+  "repository": {
+    "struct": {
+      "name": "struct.typedef",
+      "begin": "(struct|variant)\\s+(\\w+)?\\s*(\\{)\\s*",
+      "end": "(\\})",
+      "beginCaptures": {
+        "1": {
+          "name": "keyword.typedef"
+        },
+        "2": {
+          "name": "entity.name.type.typedef"
+        }
+      },
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.section.block.end.bracket.curly.typedef"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#line-comment"
+        },
+        {
+          "include": "#block-comment"
+        },
+        {
+          "include": "#struct"
+        },
+        {
+          "include": "#field"
+        }
+      ]
+    },
+    "field": {
+      "name": "field.typedef",
+      "begin": "\\s*(\\w+)\\s*(\\:)\\s*",
+      "end": "\\s*(\\;)",
+      "beginCaptures": {
+        "1": {
+          "name": "entity.name.variable.typedef"
+        },
+        "2": {
+          "name": "punctuation.typedef"
+        }
+      },
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.terminator"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#block-comment"
+        },
+        {
+          "include": "#struct"
+        },
+        {
+          "include": "#type"
+        },
+        {
+          "begin": "\\s*(=)\\s*",
+          "end": "(?=;)",
+          "beginCaptures": {
+            "1": {
+              "name": "keyword.operator.assignment.typedef"
+            }
+          },
+          "patterns": [
+            {
+              "include": "#literal"
+            }
+          ]
+        }
+      ]
+    },
+    "type": {
+      "name": "type.type.typedef",
+      "match": "(\\w+)((\\<)\\s*(\\w+)(\\s*,\\s*(\\w+))*\\s*(\\>))?",
+      "captures": {
+        "1": {
+          "name": "entity.name.type.typedef"
+        },
+        "3": {
+          "name": "punctuation.typedef"
+        },
+        "4": {
+          "name": "entity.name.type.typedef"
+        },
+        "6": {
+          "name": "entity.name.type.typedef"
+        },
+        "7": {
+          "name": "punctuation.typedef"
+        }
+      }
+    },
+    "literal": {
+      "patterns": [
+        {
+          "include": "#string"
+        },
+        {
+          "include": "#char"
+        },
+        {
+          "include": "#floating-point"
+        },
+        {
+          "include": "#hex-number"
+        },
+        {
+          "include": "#octal-number"
+        },
+        {
+          "include": "#decimal-number"
+        },
+        {
+          "match": "true|false",
+          "name": "keyword.typedef"
+        }
+      ]
+    },
+    "string": {
+      "name": "string.quoted.double.unicode.typedef",
+      "match": "\"(?:[^\"\\\\]|\\\\(u[0-9a-fA-F]{4}|U[0-9a-fA-F]{8}|.)?)*\""
+    },
+    "char": {
+      "name": "string.quoted.single.unicode.typedef",
+      "match": "'(?:[^'\\\\]|\\\\(u[0-9a-fA-F]{4}|U[0-9a-fA-F]{8}|.)?)?'"
+    },
+    "floating-point": {
+      "name": "constant.numeric.floating-point.typedef",
+      "match": "\\b(?:[0-9]+\\.[0-9]*|[0-9]*\\.[0-9]+)([eE][-+]?[0-9]+)?(f32|f64)?",
+      "captures": {
+        "2": {
+          "name": "keyword.numeric.suffix.typedef"
+        }
+      }
+    },
+    "hex-number": {
+      "name": "constant.numeric.hex.typedef",
+      "match": "\\b0x[0-9a-fA-F_]+(u8|u16|u32|u64|i8|i16|i32|i64)?\\b",
+      "captures": {
+        "1": {
+          "name": "keyword.numeric.suffix.typedef"
+        }
+      }
+    },
+    "octal-number": {
+      "name": "constant.numeric.octal.typedef",
+      "match": "\\b0o[0-7_]+(u8|u16|u32|u64|i8|i16|i32|i64)?\\b",
+      "captures": {
+        "1": {
+          "name": "keyword.numeric.suffix.typedef"
+        }
+      }
+    },
+    "decimal-number": {
+      "name": "constant.numeric.decimal.typedef",
+      "match": "\\b[0-9_]+(u8|u16|u32|u64|i8|i16|i32|i64)?\\b",
+      "captures": {
+        "1": {
+          "name": "keyword.numeric.suffix.typedef"
+        }
+      }
+    },
+    "constant": {
+      "name": "constant.numeric.td",
+      "match": "\\b\\d+\\b"
+    },
+    "line-comment": {
+      "name": "comment.line.double-slash.typedef",
+      "match": "\\/\\/.*$"
+    },
+    "block-comment": {
+      "name": "comment.block.typedef",
+      "begin": "\\/\\*",
+      "end": "\\*\\/"
+    }
+  }
+}
