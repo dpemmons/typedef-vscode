@@ -1,6 +1,6 @@
 # Typedef Language Support for Visual Studio Code
 
-This extneion provides basic syntax highlighting for the [Typedef](https://github.com/dpemmons/typedef), a statically typed data declaration, serialization and string templating language.
+This extension provides basic syntax highlighting for [Typedef](https://github.com/dpemmons/typedef), a statically typed data declaration, serialization and string templating language.
 
 Example:
 
