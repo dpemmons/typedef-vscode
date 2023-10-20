@@ -25,18 +25,28 @@
     },
     {
       "name": "module-declaration.typedef",
-      "match": "(module)\\s+(\\w+)(\\:\\:(\\w+))*(;)",
-      "captures": {
+      "begin": "(module)\\s+",
+      "end": "(;)",
+      "beginCaptures": {
         "1": {
           "name": "keyword.typedef-template"
-        },
-        "2": {
-          "name": "entity.name.namespace.typedef-template"
-        },
-        "4": {
-          "name": "entity.name.namespace.typedef-template"
         }
-      }
+      },
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.typedef-template"
+        }
+      },
+      "patterns": [
+        {
+          "match": "\\w+",
+          "name": "entity.name.namespace.typedef-template"
+        },
+        {
+          "match": "(::)",
+          "name": "punctuation.typedef-template"
+        }
+      ]
     },
     {
       "include": "#struct"
@@ -267,10 +277,6 @@
           "name": "keyword.numeric.suffix.typedef"
         }
       }
-    },
-    "constant": {
-      "name": "constant.numeric.td",
-      "match": "\\b\\d+\\b"
     },
     "line-comment": {
       "name": "comment.line.double-slash.typedef",

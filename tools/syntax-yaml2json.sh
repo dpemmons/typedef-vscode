@@ -8,8 +8,8 @@ fi
 set -xe
 
 npx js-yaml \
-  syntaxes/typedef-template.tmLanguage.yaml \
-  > syntaxes/typedef-template.tmLanguage.json
+  syntaxes/typedef.tmLangauge.yaml \
+  > syntaxes/typedef.tmLanguage.json
 
 npx js-yaml \
   syntaxes/typedef-template.tmLanguage.yaml \

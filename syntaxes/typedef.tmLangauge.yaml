@@ -14,17 +14,22 @@ patterns:
       '3':
         name: keyword.typedef-template
   - name: module-declaration.typedef
-    match: (module)\s+(\w+)(::(\w+))*(;)
-    captures:
+    begin: (module)\s+
+    end: (;)
+    beginCaptures:
       '1':
         name: keyword.typedef-template
-      '2':
+    endCaptures:
+      '1':
+        name: punctuation.typedef-template
+    patterns:
+      - match: \w+
         name: entity.name.namespace.typedef-template
-      '4':
-        name: entity.name.namespace.typedef-template
+      - match: (::)
+        name: punctuation.typedef-template
   - include: "#struct"             # Include struct definitions
   - name: raw-template.typedef-template
-    begin: (template)\s+(\w+)\(\)\s+(r#")
+    begin: (template)\s+(\w+)\(\)\s+(r\#")
     end: ("\#)
     beginCaptures:
       '1':
@@ -37,8 +42,8 @@ patterns:
       '1':
         name: punctuation.definition.template-expression.end.typedef
     patterns:
-      - match: .*
-        name: string.raw-template.typedef-template
+    - match: ".*"
+      name: string.raw-template.typedef-template
   - name: meta.embedded.typedef-template
     begin: (template)\s+(\w+)\s*(\()(.*?)(\))\s+(t")
     end: (?<!\\(?:\\\\)*)(")
@@ -99,9 +104,9 @@ repository:
             name: keyword.operator.assignment.typedef
         patterns:
           - include: "#literal"
-  type:                              # Define the type block
+  type:
     name: type.type.typedef
-    match: (\w+)((<)\s*(\w+)(\s*,\s*(\w+))*\s*(>))?
+    match: "(\\w+)((\\<)\\s*(\\w+)(\\s*,\\s*(\\w+))*\\s*(\\>))?"
     captures:
       '1':
         name: entity.name.type.typedef
@@ -123,15 +128,15 @@ repository:
       - include: "#decimal-number"
       - match: true|false
         name: keyword.typedef
-  string:                            # Define strings
+  string:
     name: string.quoted.double.unicode.typedef
-    match: "\"(?:[^\\"\\\\]|\\\\(u[0-9a-fA-F]{4}|U[0-9a-fA-F]{8}|.)?)*\""
-  char:                              # Define characters
+    match: '"(?:[^"\\]|\\(u[0-9a-fA-F]{4}|U[0-9a-fA-F]{8}|.)?)*"'
+  char:
     name: string.quoted.single.unicode.typedef
-    match: '(?:[^'\\\\]|\\\\(u[0-9a-fA-F]{4}|U[0-9a-fA-F]{8}|.)?)?'
-  floating-point:                    # Define floating point numbers
+    match: "'(?:[^'\\\\]|\\\\(u[0-9a-fA-F]{4}|U[0-9a-fA-F]{8}|.)?)?'"
+  floating-point:
     name: constant.numeric.floating-point.typedef
-    match: \b(?:[0-9]+\.[0-9]*|[0-9]*\.[0-9]+)([eE][-+]?[0-9]+)?(f32|f64)?
+    match: "\\b(?:[0-9]+\\.[0-9]*|[0-9]*\\.[0-9]+)([eE][-+]?[0-9]+)?(f32|f64)?"
     captures:
       '2':
         name: keyword.numeric.suffix.typedef
@@ -153,10 +158,10 @@ repository:
     captures:
       '1':
         name: keyword.numeric.suffix.typedef
-  line-comment:                      # Define line comments
+  line-comment:
     name: comment.line.double-slash.typedef
-    match: //.*$
-  block-comment:                     # Define block comments
+    match: "\\/\\/.*$"
+  block-comment:
     name: comment.block.typedef
-    begin: /\*
-    end: \*/ 
+    begin: "\\/\\*"
+    end: "\\*\\/"
