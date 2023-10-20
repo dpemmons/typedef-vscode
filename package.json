@@ -1,7 +1,7 @@
 {
   "name": "typedef-language",
   "publisher": "Dale Emmons",
-  "displayName": "Typedef Language",
+  "displayName": "Typedef",
   "description": "Syntax highlighting for the Typedef language.",
   "icon": "icons/logo.png",
   "version": "0.0.1",
