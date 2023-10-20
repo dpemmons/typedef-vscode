@@ -1,7 +1,9 @@
 {
   "name": "typedef-language",
+  "publisher": "Dale Emmons",
   "displayName": "Typedef Language",
   "description": "Syntax highlighting for the Typedef language.",
+  "icon": "icons/logo.png",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.83.0"
@@ -21,6 +23,10 @@
         "extensions": [
           ".td"
         ],
+        "icon": {
+          "light": "./icons/icon-512-light.png",
+          "dark": "./icons/icon-512-dark.png"
+        },
         "configuration": "./language-configuration.json",
         "embeddedLanguages": {
           "meta.embedded.typedef-template": "typedef-template"

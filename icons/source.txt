@@ -1,0 +1,11 @@
+Generated from:
+
+Text: td
+Font: Roboto
+Color: white
+Effect: Cast Shadow
+Padding: 9%
+
+Background: Gradient 51%  09DB2E to 14701C
+
+https://icon.kitchen/i/H4sIAAAAAAAAA1WPvQ7CMAyE38WsDBSBEF0RYmVgQwxJ7aQRaY3S8Keq744dwcBi%2BTvp7uwRHibeaYB6BDTpemqpI6idiQPNwfnT%2ByYImV4ZCusijELW7zhyEpwttmiXVLSvwyeDgXp1WX%2F4gbQ06qn%2BTEVaqlStNouqEcn0PkrMupq0de8cNVmOhKE1yM9yytEght5rZuYb1Ns5pOBbKZHNcs7clTWSU22SpI7xHvXZsxRg4qBvBB5kPsnCZfoA7Lk%2Blw8BAAA%3D
